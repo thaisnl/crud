@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Auth from './Auth';
+import Auth from '../components/Auth';
 import {Redirect, Route} from 'react-router-dom';
 
 const PublicRoute = ({ component: Component, ...rest }) => (

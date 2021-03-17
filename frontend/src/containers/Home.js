@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import Auth from '../components/Auth';
 import axios from 'axios';
 
 function Home() {
@@ -13,12 +14,22 @@ function Home() {
         })
     })
 
+    const logout = () => {
+        axios.delete('http://localhost:5000/logout', {withCredentials:true})
+            .then(res => {
+                Auth.logout()
+                setRedirect(true)
+            })
+    }
+
     return ( 
         <div className="container">   
             <div className="col-12">
+
                 {redirect ?
                 <Redirect to="/login"/>
                 : null }
+                
                 <div className="row justify-content-start">
                     <div className="col-6 intro">Olá, {nome}!</div>
                 </div>
@@ -28,11 +39,11 @@ function Home() {
                                 Editar dados
                         </div>
                     </Link>
-                    <Link to="/logout" className="col-3 col-sm-2 col-md-1 ml-2 no-padding">
-                        <div className="btn btn-danger">
+                    <div className="col-3 col-sm-2 col-md-1 ml-2 no-padding">
+                        <div className="btn btn-danger" onClick={logout}>
                                 Logout
                         </div>
-                    </Link>
+                    </div>
                 </div>
             </div>
         </div>  
