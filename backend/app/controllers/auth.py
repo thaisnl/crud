@@ -24,15 +24,16 @@ def login():
     if usuario:
         if usuario.checar_senha(senha):
             token = gerar_token(usuario)
-            ret = usuario_schema.dump(usuario)
             res = make_response(
                     jsonify({
                         'message':'Logado com sucesso', 
-                        'data': ret
+                        'data': {
+                            'token': token,
+                            'expDate': datetime.utcnow() + timedelta(minutes = 30)
+                        }
                     }), 200)  
 
-            res.set_cookie('cpf', usuario.cpf)
-            res.set_cookie('token', token)
+            res.set_cookie('token', token, httponly=True)
 
             return res
 
@@ -40,6 +41,16 @@ def login():
                 'message': 'Usuário ou senha inválidos', 
                 'data':{}
             }), 401
+
+# Função para realizar o logout do usuário
+def logout():
+    res = make_response(
+            jsonify({
+                'message':'Logout bem sucedido', 
+                'data': {}
+            }), 200)
+    res.set_cookie('token', '', expires=0)
+    return res
 
 # Função para gerar o token jwt de autenticação
 # Recebe como parâmetro um Usuario
@@ -51,34 +62,3 @@ def gerar_token(usuario):
             algorithm='HS256') 
     return token
  
-# Função para checar se o usuário está autenticado e se o token é válido
-# Vai servir como decorator para as rotas
-def requer_autenticacao(f): 
-    @wraps(f) 
-    def decorated(*args, **kwargs): 
-        token = request.cookies.get('token')
-
-        if not token: 
-            return jsonify({
-                        'message' : 'Usuário não autenticado', 
-                        'data':{}
-                    }), 401
-   
-        try: 
-            retorno = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
-
-            # Se o cookie cpf não for igual ao cpf criptografado no token, request é barrada
-            # P/ caso da pessoa adulterar o cookie do cpf
-            if retorno['cpf'] != request.cookies.get('cpf'):
-                return jsonify({
-                            'message' : 'Usuário não autenticado', 
-                            'data':{}
-                        }), 401
-        except: 
-            return jsonify({
-                        'message' : 'O token é inválido',
-                        'data':{}
-                    }), 401
-
-        return  f(*args, **kwargs) 
-    return decorated

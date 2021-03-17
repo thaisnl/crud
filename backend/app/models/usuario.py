@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db, ma
-from app.common.validacoes import checar_somente_letras, validar_cpf, validar_email, validar_pis, validar_senha, checar_vazio, remover_pontuacao
+from app.common.validacoes import checar_somente_letras, checar_somente_numeros, validar_cpf, validar_email, validar_pis, validar_senha, checar_vazio, remover_pontuacao
 
 class Usuario(db.Model):
 
@@ -34,18 +34,18 @@ class Usuario(db.Model):
         numero = obj.get('numero')
         complemento = obj.get('complemento')
         
-        self.cpf = cpf
+        self.nome = nome
         self.pis = pis
+        self.cpf = cpf
         self.email = email
-        self.cep = cep
-        self.pais = pais
-        self.estado = estado
-        self.municipio = municipio
+        self.rua = rua
         self.numero = numero
         self.complemento = complemento
-        self.rua = rua
+        self.cep = cep
+        self.estado = estado
+        self.municipio = municipio
+        self.pais = pais
         self.senha = senha
-        self.nome = nome
 
     @property
     def nome(self):
@@ -54,6 +54,7 @@ class Usuario(db.Model):
     @nome.setter
     def nome(self, novo_nome):
         checar_vazio('nome', novo_nome)
+        checar_somente_letras('nome', novo_nome)
         self._nome = novo_nome
     
     @property
@@ -62,8 +63,8 @@ class Usuario(db.Model):
     
     @pais.setter
     def pais(self, novo_pais):
-        checar_somente_letras('país', novo_pais)
         checar_vazio('país', novo_pais)
+        checar_somente_letras('país', novo_pais)
         self._pais = novo_pais
     
     @property
@@ -72,8 +73,8 @@ class Usuario(db.Model):
     
     @estado.setter
     def estado(self, novo_estado):
-        checar_somente_letras('estado', novo_estado)
         checar_vazio('estado', novo_estado)
+        checar_somente_letras('estado', novo_estado)
         self._estado = novo_estado
     
     @property
@@ -82,8 +83,8 @@ class Usuario(db.Model):
     
     @municipio.setter
     def municipio(self, novo_municipio):
-        checar_somente_letras('município', novo_municipio)
         checar_vazio('município', novo_municipio)
+        checar_somente_letras('município', novo_municipio)
         self._municipio = novo_municipio
     
     @property
@@ -103,6 +104,7 @@ class Usuario(db.Model):
     def cep(self, novo_cep):
         novo_cep = remover_pontuacao(novo_cep)
         checar_vazio('cep', novo_cep)
+        checar_somente_numeros('cep', novo_cep)
         self._cep = novo_cep
     
     @property
@@ -183,7 +185,7 @@ class Usuario(db.Model):
     def atualizar_usuario(self, req):
         nome = req.get('nome')
         email = req.get('email')
-        senha = req.get('senha')
+        senha = req.get('nova_senha')
         pais = req.get('pais')
         estado = req.get('estado')
         municipio = req.get('municipio')
@@ -191,35 +193,34 @@ class Usuario(db.Model):
         rua = req.get('rua')
         numero = req.get('numero')
         complemento = req.get('complemento')
-        senha = req.get('senha')
 
         cpf = req.get('cpf')
         pis = req.get('pis')
   
         if nome is not None:
             self.nome = nome
-        if email is not None:
-            self.email = email
+        if pis is not None:
+            self.pis = pis
         if cpf is not None:
             self.cpf = cpf
-        if pais is not None:
-            self.pais = pais
-        if estado is not None:
-            self.estado = estado
-        if municipio is not None:
-            self.municipio = municipio
-        if cep is not None:
-            self.cep = cep
+        if email is not None:
+            self.email = email
         if rua is not None:
             self.rua = rua
         if numero is not None:
             self.numero = numero
-        if senha is not None:
-            self.senha = senha
         if complemento is not None:
             self.complemento = complemento
-        if pis is not None:
-            self.pis = pis
+        if cep is not None:
+            self.cep = cep
+        if estado is not None:
+            self.estado = estado
+        if municipio is not None:
+            self.municipio = municipio
+        if pais is not None:
+            self.pais = pais
+        if senha is not None:
+            self.senha = senha
 
 # ------------------------------ SCHEMA ------------------------------
 class UsuarioSchema(ma.Schema):

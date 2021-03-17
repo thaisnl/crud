@@ -1,10 +1,15 @@
 import re, string
 
 # ------------------------------------- VALIDAÇÕES ------------------------------------- 
-# Função para checar se a string só contém números
+# Função para checar se a string só contém letras
 def checar_somente_letras(atributo, novo_atributo):
-    if not novo_atributo.isalpha():
+    if not all(x.isalpha() or x.isspace() for x in novo_atributo):
         raise AttributeError("O campo " + atributo + " deve conter somente letras")
+
+# Função para checar se a string só contém números
+def checar_somente_numeros(atributo, novo_atributo):
+    if not novo_atributo.isdigit():
+        raise AttributeError("O campo " + atributo + " deve conter somente números")
     
 # Função para checar se o atributo é vazio
 def checar_vazio(atributo, novo_atributo):

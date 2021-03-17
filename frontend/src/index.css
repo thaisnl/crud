@@ -1,12 +1,18 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 body {
   font-family:Verdana, Tahoma, sans-serif;
+  padding-top: 15px;
+  padding-bottom: 15px;
   height: 100%;
-  width:100%;
+  font-family: 'Roboto';
   color: white;
   background-size: cover;
 }
-
+.saudacao {
+  font-size: 70px;
+}
 .btn {
   border-radius: 4px;
   border: 1px solid white;
@@ -21,9 +27,26 @@ body {
   font-size: 4em;
 }
 
+p {
+  margin-bottom: 0px;
+}
+.nome-form {
+  font-size: 40px;
+}
+
+@media (max-width: 575.98px) {
+  .nome-form {
+    font-size: 25px;
+  }
+
+  .saudacao {
+    font-size: 40px;
+  }
+}
+
 .container {
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  height: 100vh;
 }
 

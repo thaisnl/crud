@@ -203,13 +203,13 @@ class BasicTests(unittest.TestCase):
 
  
     def test_get_sem_login(self):
-        res = self.app.get('/')
+        res = self.app.get('/usuario')
         self.assertEqual(res.status_code, 401)
     
     def test_get_com_login(self):
         self.cadastrar_usuario(usuario_a_cadastrar)
         self.login_usuario(usuario_a_logar)
-        res = self.app.get('/')
+        res = self.app.get('/usuario')
         self.assertEqual(res.status_code, 200)
     
     def test_update_com_login(self):
