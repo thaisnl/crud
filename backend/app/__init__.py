@@ -11,7 +11,7 @@ db = SQLAlchemy()
 
 # Instanciação + inicialização
 app = Flask(__name__, instance_relative_config=True)
-config_type = os.getenv('FLASK_CONFIG')
+config_type = 'production'
 app.config.from_object(app_config[config_type])
 app.config.from_pyfile('config.py')
 CORS(app)

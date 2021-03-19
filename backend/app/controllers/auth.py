@@ -1,4 +1,4 @@
-import jwt 
+import jwt, traceback
 from flask import request, jsonify, make_response
 from app import app
 from functools import wraps

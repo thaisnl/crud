@@ -1,0 +1,52 @@
+version: '3.7'
+services:
+  client:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/app
+      - /app/node_modules
+    networks:
+      - frontend
+  db:
+    image: postgres:latest
+    container_name: postgres-db
+    command: postgres 
+    ports:
+      - "5432:5432"
+    volumes:
+        - postgres-db-vol:/var/lib/postgresql/data
+    environment:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_DB: db-pontotel
+    networks:
+        - backend
+  api:
+    build: 
+        context: ./backend
+        dockerfile: Dockerfile
+    ports:
+        - "5000:5000"
+    volumes:
+        - appdata:/var/www/
+    depends_on: 
+        - db
+    networks:
+        - frontend
+        - backend
+
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge
+volumes:
+    postgres-db-vol:
+        driver: local
+    appdata:
+        driver: local
