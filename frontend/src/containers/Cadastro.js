@@ -44,7 +44,8 @@ function Cadastro() {
     return ( 
         <div className="container">  
             <div className="col-12">
-                <p className="text-center nome-form">Cadastro de usuário</p> 
+                <p className="text-center nome-form">Cadastro de usuário</p>
+                <p className="text-center">(*) Campo obrigatório</p> 
 
                 {erro.deuErro ?
                 <Alerta msg={erro.msgErro} tipo="danger" xs={10} sm={6}/>

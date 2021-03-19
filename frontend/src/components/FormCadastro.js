@@ -6,7 +6,7 @@ function FormCadastro(props) {
             <form onSubmit={props.enviarForm}> 
                 <div className="form-row justify-content-center">
                     <div className="col-10 col-sm-6">
-                        <label for="nome">Nome</label>
+                        <label for="nome">Nome *</label>
                         <input name="nome"
                                 id="nome"
                                 value={props.usuario.nome}
@@ -18,7 +18,7 @@ function FormCadastro(props) {
                 </div>
                 <div className="form-row justify-content-center">
                     <div className="col-5 col-sm-3">
-                        <label for="pis">PIS</label>
+                        <label for="pis">PIS *</label>
                         <input name="pis"
                                 id="pis"
                                 value={props.usuario.pis}
@@ -28,7 +28,7 @@ function FormCadastro(props) {
                                     props.setUsuario({...props.usuario, pis:e.target.value})}} />
                     </div>
                     <div className="col-5 col-sm-3">
-                        <label for="cpf">CPF</label>
+                        <label for="cpf">CPF *</label>
                             <input name="cpf" 
                                 value={props.usuario.cpf}
                                 id="cpf"
@@ -40,7 +40,7 @@ function FormCadastro(props) {
                 </div>
                 <div className="form-row justify-content-center">
                     <div className="col-10 col-sm-6">
-                        <label for="email">E-mail</label>
+                        <label for="email">E-mail *</label>
                         <input name="email"
                                 id="email"
                                 value={props.usuario.email}
@@ -52,7 +52,7 @@ function FormCadastro(props) {
                 </div>
                 <div className="form-row justify-content-center">
                     <div className="col-5 col-sm-3">
-                        <label for="rua">Rua</label>
+                        <label for="rua">Rua *</label>
                         <input name="rua"
                                 id="rua"
                                 value={props.usuario.rua}
@@ -62,7 +62,7 @@ function FormCadastro(props) {
                                     props.setUsuario({...props.usuario, rua:e.target.value})}} />
                     </div>
                     <div className="col-2 col-sm-1">
-                        <label for="numero">Nº</label>
+                        <label for="numero">Nº *</label>
                             <input name="numero" 
                                 value={props.usuario.numero}
                                 id="numero"
@@ -84,7 +84,7 @@ function FormCadastro(props) {
                 </div>
                 <div className="form-row justify-content-center">
                     <div className="col-5 col-sm-3">
-                        <label for="cep">CEP</label>
+                        <label for="cep">CEP *</label>
                         <input name="cep"
                                 id="cep"
                                 value={props.usuario.cep}
@@ -94,7 +94,7 @@ function FormCadastro(props) {
                                     props.setUsuario({...props.usuario, cep:e.target.value})}} />
                     </div>
                     <div className="col-5 col-sm-3">
-                        <label for="estado">Estado</label>
+                        <label for="estado">Estado *</label>
                             <input name="estado" 
                                 value={props.usuario.estado}
                                 id="estado"
@@ -106,7 +106,7 @@ function FormCadastro(props) {
                 </div>
                 <div className="form-row justify-content-center">
                     <div className="col-5 col-sm-3">
-                        <label for="municipio">Município</label>
+                        <label for="municipio">Município *</label>
                         <input name="municipio" 
                                 value={props.usuario.municipio}
                                 id="municipio"
@@ -116,7 +116,7 @@ function FormCadastro(props) {
                                     props.setUsuario({...props.usuario, municipio:e.target.value})}} />
                     </div>
                     <div className="col-5 col-sm-3">
-                        <label for="pais">País</label>
+                        <label for="pais">País *</label>
                         <input name="pais" 
                                 value={props.usuario.pais}
                                 id="pais"
@@ -128,7 +128,7 @@ function FormCadastro(props) {
                 </div>
                 <div className="form-row justify-content-center">
                     <div className="col-10 col-sm-6">
-                        <label for="senha">Senha</label>
+                        <label for="senha">Senha *</label>
                         <input name="senha" 
                                 value={props.usuario.senha}
                                 id="senha"
