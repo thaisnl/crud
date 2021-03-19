@@ -1,8 +1,7 @@
 # crud
 CRUD de usuários feito com flask e react, usando o banco de dados postgres.
 
-# H3
-Instruções para executar
+### Instruções para executar
 
 Requer docker e docker-compose (mínimo ver 1.23.0) instalados. 
 Para instalá-los:
