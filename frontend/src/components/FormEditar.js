@@ -134,6 +134,7 @@ function FormEditar(props) {
                         <input name="senha_atual" 
                                 value={props.usuario.senha_atual}
                                 id="senha_atual"
+                                type="password"
                                 className="form-control"
                                 onChange={(e) => {
                                     props.limparAlertas()
@@ -146,6 +147,7 @@ function FormEditar(props) {
                         <input name="nova_senha" 
                                 value={props.usuario.nova_senha}
                                 id="nova_senha"
+                                type="password"
                                 className="form-control"
                                 onChange={(e) => {
                                     props.limparAlertas()

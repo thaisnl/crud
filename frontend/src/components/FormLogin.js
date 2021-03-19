@@ -19,6 +19,7 @@ function FormLogin(props) {
                         <label for="senha">Senha</label>
                         <input name="senha"
                                 id="senha"
+                                type="password"
                                 value={props.usuario.senha}
                                 className="form-control"
                                 onChange={(e) => { props.limparAlertas()

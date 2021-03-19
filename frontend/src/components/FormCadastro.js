@@ -132,6 +132,7 @@ function FormCadastro(props) {
                         <input name="senha" 
                                 value={props.usuario.senha}
                                 id="senha"
+                                type="password"
                                 className="form-control"
                                 onChange={(e) => {
                                     props.limparAlertas()
