@@ -11,6 +11,9 @@ function Home() {
         axios.get('http://localhost:5000/usuario', {withCredentials: true})
         .then(res => {
             setNome(res.data.data.nome)
+        }).catch(err => {
+            Auth.logout()
+            setRedirect(true)
         })
     })
 

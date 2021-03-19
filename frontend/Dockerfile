@@ -3,8 +3,6 @@ FROM node:current-alpine
 EXPOSE 3000
 EXPOSE 35729
 
-USER root
-
 WORKDIR /app
 
 ENV PATH /app/node_modules/.bin:$PATH

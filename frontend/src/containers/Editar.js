@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import Alerta from '../components/Alerta'
+import Auth from '../components/Auth'
 import FormEditar from '../components/FormEditar'
 
 function Editar() {
@@ -69,6 +70,7 @@ function Editar() {
 
         axios.delete('http://localhost:5000/remover', {withCredentials:true})
             .then(res => {
+                Auth.logout()
                 setRedirect(true)
             }).catch(err => {
                 setErro({deuErro: true, msgErro:"Erro na remoção do usuário"})
