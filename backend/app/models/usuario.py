@@ -183,8 +183,10 @@ class Usuario(db.Model):
             raise AttributeError("E-mail não é válido")
 
     def atualizar_usuario(self, req):
+        attrs = ['nome', 'pis', 'cpf', 'email', 'senha', 'pais', 'estado', 'municipio','cep','rua','numero','complemento']
         for chave, valor in req.items():
-            setattr(self, chave, valor)
+            if chave in attrs:
+                setattr(self, chave, valor)
 
 # ------------------------------ SCHEMA ------------------------------
 class UsuarioSchema(ma.Schema):
