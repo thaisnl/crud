@@ -120,8 +120,7 @@ def remover_usuario():
                                     'message':'Usuário deletado com sucesso', 
                                     'data':ret
                                 }), 200)
-            
-            res.set_cookie('cpf', '', expires=0)
+        
             res.set_cookie('token', '', expires=0)
             
             return res

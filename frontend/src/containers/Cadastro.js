@@ -33,7 +33,7 @@ function Cadastro() {
             })
             .catch(err => {
                 setErro({deuErro:true, msgErro: err.response.data.message})
-            })
+            }) 
     }
 
     const limparAlertas = () => {
